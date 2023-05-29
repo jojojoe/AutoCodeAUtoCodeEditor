@@ -1,0 +1,7 @@
+AUtoCodeEditor.xcodeproj/xcuserdata/
+AUtoCodeEditor.xcworkspace/
+Pods/
+*.swp
+Podfile.lock
+.DS_Store
+AUtoCodeEditor.xcodeproj/project.xcworkspace/xcuserdata/
