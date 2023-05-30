@@ -19,6 +19,10 @@
 		EBF09E0A2A24976500201987 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBF09E092A24976500201987 /* Assets.xcassets */; };
 		EBF09E0D2A24976500201987 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBF09E0B2A24976500201987 /* LaunchScreen.storyboard */; };
 		EBF09E182A24B52500201987 /* AUtoExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF09E172A24B52500201987 /* AUtoExtension.swift */; };
+		EBF09E1D2A25CC3500201987 /* AUtoCustomImageViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF09E1C2A25CC3500201987 /* AUtoCustomImageViewVC.swift */; };
+		EBF09E1F2A25D07600201987 /* AUtoCustomButtonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF09E1E2A25D07600201987 /* AUtoCustomButtonVC.swift */; };
+		EBF09E212A25D15500201987 /* AUtoCustomLabelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF09E202A25D15500201987 /* AUtoCustomLabelVC.swift */; };
+		EBF09E242A25E89B00201987 /* AUtoEnableSwitchControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF09E232A25E89B00201987 /* AUtoEnableSwitchControl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +42,10 @@
 		EBF09E0C2A24976500201987 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EBF09E0E2A24976500201987 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EBF09E172A24B52500201987 /* AUtoExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AUtoExtension.swift; sourceTree = "<group>"; };
+		EBF09E1C2A25CC3500201987 /* AUtoCustomImageViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AUtoCustomImageViewVC.swift; sourceTree = "<group>"; };
+		EBF09E1E2A25D07600201987 /* AUtoCustomButtonVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AUtoCustomButtonVC.swift; sourceTree = "<group>"; };
+		EBF09E202A25D15500201987 /* AUtoCustomLabelVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AUtoCustomLabelVC.swift; sourceTree = "<group>"; };
+		EBF09E232A25E89B00201987 /* AUtoEnableSwitchControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AUtoEnableSwitchControl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +75,7 @@
 				D8E769C12A24F252008BD289 /* AUtoColorSelectControl.swift */,
 				D8E769C32A24F274008BD289 /* AUtoValueSelectControl.swift */,
 				D8E769C52A24F2A2008BD289 /* AUtoStringSelectControl.swift */,
+				EBF09E232A25E89B00201987 /* AUtoEnableSwitchControl.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -97,6 +106,9 @@
 				EBF09E022A24976300201987 /* SceneDelegate.swift */,
 				EBF09E042A24976300201987 /* ViewController.swift */,
 				D8E769BE2A24DA3D008BD289 /* AUtoCustomViewVC.swift */,
+				EBF09E1C2A25CC3500201987 /* AUtoCustomImageViewVC.swift */,
+				EBF09E1E2A25D07600201987 /* AUtoCustomButtonVC.swift */,
+				EBF09E202A25D15500201987 /* AUtoCustomLabelVC.swift */,
 				D8E769C02A24F21A008BD289 /* Views */,
 				EBF09E062A24976300201987 /* Main.storyboard */,
 				EBF09E092A24976500201987 /* Assets.xcassets */,
@@ -238,13 +250,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8E769C22A24F252008BD289 /* AUtoColorSelectControl.swift in Sources */,
+				EBF09E1D2A25CC3500201987 /* AUtoCustomImageViewVC.swift in Sources */,
 				D8E769C62A24F2A2008BD289 /* AUtoStringSelectControl.swift in Sources */,
 				D8E769C42A24F274008BD289 /* AUtoValueSelectControl.swift in Sources */,
+				EBF09E1F2A25D07600201987 /* AUtoCustomButtonVC.swift in Sources */,
 				EBF09E052A24976300201987 /* ViewController.swift in Sources */,
 				EBF09E012A24976300201987 /* AppDelegate.swift in Sources */,
 				EBF09E182A24B52500201987 /* AUtoExtension.swift in Sources */,
 				EBF09E032A24976300201987 /* SceneDelegate.swift in Sources */,
+				EBF09E212A25D15500201987 /* AUtoCustomLabelVC.swift in Sources */,
 				D8E769BF2A24DA3D008BD289 /* AUtoCustomViewVC.swift in Sources */,
+				EBF09E242A25E89B00201987 /* AUtoEnableSwitchControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

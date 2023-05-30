@@ -1,22 +1,34 @@
 //
-//  AUtoCustomViewVC.swift
+//  AUtoCustomButtonVC.swift
 //  AUtoCodeEditor
 //
-//  Created by Joe on 2023/5/29.
+//  Created by JOJO on 2023/5/30.
 //
 
 import UIKit
 import SnapKit
 
-class AUtoCustomViewVC: UIViewController {
+class AUtoCustomButtonVC: UIViewController {
 
-    let previewView = UIView()
+    let previewView = UIButton()
     let contentScrollV = UIScrollView()
     
     //
     let nameControlV = AUtoStringSelectControl(frame: .zero, titNameStr: "ControlName")
     let bgColorControlV = AUtoColorSelectControl(frame: .zero, titNameStr: "Bg Color", currentColorStr: "")
     let alphaControlV = AUtoValueSelectControl(frame: .zero, titNameStr: "Alpha", currentValue: 0.5, isEnable: false)
+    
+    let btnTitleContentControlV = AUtoStringSelectControl(frame: .zero, titNameStr: "Title Content", configBtnType: .typeNone)
+    let btnTitleFontControlV = AUtoStringSelectControl(frame: .zero, titNameStr: "Title Font", configBtnType: .typeFont)
+    let btnTitleColorControlV = AUtoColorSelectControl(frame: .zero, titNameStr: "Title Color", currentColorStr: "#000000")
+    
+    let btnImageNameControlV = AUtoStringSelectControl(frame: .zero, titNameStr: "Content Image", isEnable: false, configBtnType: .typeNone)
+    let btnImageNameSelectedControlV = AUtoStringSelectControl(frame: .zero, titNameStr: "Content Image Selected", isEnable: false, configBtnType: .typeNone)
+    let btnBgImageNameControlV = AUtoStringSelectControl(frame: .zero, titNameStr: "Bg Image", isEnable: false, configBtnType: .typeNone)
+    let btnBgImageNameSelectedControlV = AUtoStringSelectControl(frame: .zero, titNameStr: "Bg Image Selected", isEnable: false, configBtnType: .typeNone)
+    
+    
+    
     let borderColorControlV = AUtoColorSelectControl(frame: .zero, titNameStr: "Border Color", currentColorStr: "", isEnable: false)
     let borderWidthControlV = AUtoValueSelectControl(frame: .zero, titNameStr: "Border Width", currentValue: 1.0, isEnable: false)
     let borderCornerControlV = AUtoValueSelectControl(frame: .zero, titNameStr: "Corner Radius", currentValue: 1.0, isEnable: false)
@@ -46,6 +58,8 @@ class AUtoCustomViewVC: UIViewController {
         setupNameBgV()
         setupBackgroundColorV()
         setupAlphaV()
+        setupTextControlV()
+        setupImageControlV()
         setupBorderControlV()
         setupShadowControlV()
         
@@ -104,7 +118,7 @@ class AUtoCustomViewVC: UIViewController {
     
 }
 
-extension AUtoCustomViewVC {
+extension AUtoCustomButtonVC {
     func setupNameBgV() {
         contentScrollV.addSubview(nameControlV)
         nameControlV.snp.makeConstraints {
@@ -113,6 +127,7 @@ extension AUtoCustomViewVC {
             $0.left.equalToSuperview().offset(10)
             $0.top.equalToSuperview().offset(20)
         }
+        
     }
     
     //
@@ -138,6 +153,84 @@ extension AUtoCustomViewVC {
             $0.top.equalTo(bgColorControlV.snp.top).offset(0)
         }
     }
+    //
+    func setupTextControlV() {
+        contentScrollV.addSubview(btnTitleContentControlV)
+        btnTitleContentControlV.snp.makeConstraints {
+            $0.left.equalToSuperview().offset(10)
+            $0.top.equalTo(bgColorControlV.snp.bottom).offset(20)
+            $0.width.equalTo(120)
+            $0.height.equalTo(90)
+        }
+        //
+        contentScrollV.addSubview(btnTitleFontControlV)
+        btnTitleFontControlV.snp.makeConstraints {
+            $0.left.equalTo(btnTitleContentControlV.snp.right).offset(10)
+            $0.top.equalTo(btnTitleContentControlV.snp.top).offset(0)
+            $0.width.equalTo(120)
+            $0.height.equalTo(90)
+        }
+        btnTitleFontControlV.fontSelectBlock = {
+            [weak self] in
+            guard let `self` = self else {return}
+            DispatchQueue.main.async {
+                self.showFontSelectPopV()
+            }
+        }
+        //
+        contentScrollV.addSubview(btnTitleColorControlV)
+        btnTitleColorControlV.snp.makeConstraints {
+            $0.left.equalTo(btnTitleFontControlV.snp.right).offset(10)
+            $0.top.equalTo(btnTitleContentControlV.snp.top).offset(0)
+            $0.width.equalTo(120)
+            $0.height.equalTo(90)
+        }
+        
+    }
+    
+    
+    //
+    func setupImageControlV() {
+        //
+        contentScrollV.addSubview(btnImageNameControlV)
+        btnImageNameControlV.snp.makeConstraints {
+            $0.width.equalTo(180)
+            $0.height.equalTo(90)
+            $0.left.equalToSuperview().offset(10)
+            $0.top.equalTo(btnTitleContentControlV.snp.bottom).offset(20)
+        }
+        //
+        contentScrollV.addSubview(btnImageNameSelectedControlV)
+        btnImageNameSelectedControlV.snp.makeConstraints {
+            $0.width.equalTo(180)
+            $0.height.equalTo(90)
+            $0.left.equalTo(btnImageNameControlV.snp.right).offset(10)
+            $0.top.equalTo(btnImageNameControlV.snp.top).offset(0)
+        }
+        
+        //
+        contentScrollV.addSubview(btnBgImageNameControlV)
+        btnBgImageNameControlV.snp.makeConstraints {
+            $0.width.equalTo(180)
+            $0.height.equalTo(90)
+            $0.left.equalToSuperview().offset(10)
+            $0.top.equalTo(btnImageNameControlV.snp.bottom).offset(20)
+        }
+        //
+        contentScrollV.addSubview(btnBgImageNameSelectedControlV)
+        btnBgImageNameSelectedControlV.snp.makeConstraints {
+            $0.width.equalTo(180)
+            $0.height.equalTo(90)
+            $0.left.equalTo(btnBgImageNameControlV.snp.right).offset(10)
+            $0.top.equalTo(btnBgImageNameControlV.snp.top).offset(0)
+        }
+        
+        //
+         
+        
+        
+    }
+    
     
     //
     func setupBorderControlV() {
@@ -147,7 +240,7 @@ extension AUtoCustomViewVC {
             $0.width.equalTo(120)
             $0.height.equalTo(90)
             $0.left.equalToSuperview().offset(10)
-            $0.top.equalTo(bgColorControlV.snp.bottom).offset(20)
+            $0.top.equalTo(btnBgImageNameControlV.snp.bottom).offset(20)
         }
         //
         contentScrollV.addSubview(borderWidthControlV)
@@ -219,7 +312,7 @@ extension AUtoCustomViewVC {
     
 }
 
-extension AUtoCustomViewVC {
+extension AUtoCustomButtonVC {
     @objc func backBtnClick() {
         if self.navigationController != nil {
             self.navigationController?.popViewController()
@@ -236,6 +329,9 @@ extension AUtoCustomViewVC {
         
     }
     
+    func showFontSelectPopV() {
+        
+    }
    
 }
 

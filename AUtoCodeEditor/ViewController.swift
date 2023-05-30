@@ -109,10 +109,13 @@ extension ViewController: UICollectionViewDelegate {
             self.enterViewVC()
             break
         case .label:
+            self.enterLabelVC()
             break
         case .button:
+            enterButtonVC()
             break
         case .imageView:
+            self.enterImageViewVC()
             break
         case .attributeString:
             break
@@ -130,6 +133,19 @@ extension ViewController: UICollectionViewDelegate {
 extension ViewController {
     func enterViewVC() {
         let vc = AUtoCustomViewVC()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    func enterImageViewVC() {
+        let vc = AUtoCustomImageViewVC()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    func enterButtonVC() {
+        let vc = AUtoCustomButtonVC()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func enterLabelVC() {
+        let vc = AUtoCustomLabelVC()
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

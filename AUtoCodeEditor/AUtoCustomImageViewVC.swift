@@ -1,20 +1,22 @@
 //
-//  AUtoCustomViewVC.swift
+//  AUtoCustomImageViewVC.swift
 //  AUtoCodeEditor
 //
-//  Created by Joe on 2023/5/29.
+//  Created by JOJO on 2023/5/30.
 //
+
 
 import UIKit
 import SnapKit
 
-class AUtoCustomViewVC: UIViewController {
+class AUtoCustomImageViewVC: UIViewController {
 
     let previewView = UIView()
     let contentScrollV = UIScrollView()
     
     //
     let nameControlV = AUtoStringSelectControl(frame: .zero, titNameStr: "ControlName")
+    let imageNameControlV = AUtoStringSelectControl(frame: .zero, titNameStr: "Image Name")
     let bgColorControlV = AUtoColorSelectControl(frame: .zero, titNameStr: "Bg Color", currentColorStr: "")
     let alphaControlV = AUtoValueSelectControl(frame: .zero, titNameStr: "Alpha", currentValue: 0.5, isEnable: false)
     let borderColorControlV = AUtoColorSelectControl(frame: .zero, titNameStr: "Border Color", currentColorStr: "", isEnable: false)
@@ -104,7 +106,7 @@ class AUtoCustomViewVC: UIViewController {
     
 }
 
-extension AUtoCustomViewVC {
+extension AUtoCustomImageViewVC {
     func setupNameBgV() {
         contentScrollV.addSubview(nameControlV)
         nameControlV.snp.makeConstraints {
@@ -112,6 +114,15 @@ extension AUtoCustomViewVC {
             $0.height.equalTo(90)
             $0.left.equalToSuperview().offset(10)
             $0.top.equalToSuperview().offset(20)
+        }
+        //
+        
+        contentScrollV.addSubview(imageNameControlV)
+        imageNameControlV.snp.makeConstraints {
+            $0.width.equalTo(180)
+            $0.height.equalTo(90)
+            $0.left.equalTo(nameControlV.snp.right).offset(10)
+            $0.top.equalTo(nameControlV.snp.top).offset(0)
         }
     }
     
@@ -219,7 +230,7 @@ extension AUtoCustomViewVC {
     
 }
 
-extension AUtoCustomViewVC {
+extension AUtoCustomImageViewVC {
     @objc func backBtnClick() {
         if self.navigationController != nil {
             self.navigationController?.popViewController()

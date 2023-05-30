@@ -1,22 +1,32 @@
 //
-//  AUtoCustomViewVC.swift
+//  AUtoCustomLabelVC.swift
 //  AUtoCodeEditor
 //
-//  Created by Joe on 2023/5/29.
+//  Created by JOJO on 2023/5/30.
 //
 
 import UIKit
 import SnapKit
 
-class AUtoCustomViewVC: UIViewController {
+class AUtoCustomLabelVC: UIViewController {
 
-    let previewView = UIView()
+    let previewView = UILabel()
     let contentScrollV = UIScrollView()
     
     //
     let nameControlV = AUtoStringSelectControl(frame: .zero, titNameStr: "ControlName")
-    let bgColorControlV = AUtoColorSelectControl(frame: .zero, titNameStr: "Bg Color", currentColorStr: "")
+    let contentTextControlV = AUtoStringSelectControl(frame: .zero, titNameStr: "ContentText", configBtnType: .typeNone)
+    let bgColorControlV = AUtoColorSelectControl(frame: .zero, titNameStr: "Bg Color", currentColorStr: "", isEnable: false)
     let alphaControlV = AUtoValueSelectControl(frame: .zero, titNameStr: "Alpha", currentValue: 0.5, isEnable: false)
+    
+    let labelTitleContentControlV = AUtoStringSelectControl(frame: .zero, titNameStr: "Title Content", configBtnType: .typeNone)
+    let labelTitleFontControlV = AUtoStringSelectControl(frame: .zero, titNameStr: "Title Font", configBtnType: .typeFont)
+    let labelTitleColorControlV = AUtoColorSelectControl(frame: .zero, titNameStr: "Title Color", currentColorStr: "#000000")
+    
+    let numberLinesControlV = AUtoValueSelectControl(frame: .zero, titNameStr: "Number of Lines", currentValue: 0, isEnable: false)
+    let adjustFitWidthControlV = AUtoEnableSwitchControl(frame: .zero, titNameStr: "AdjustFitWidth", currentPropertyNameStr: "adjustsFontSizeToFitWidth", isEnable: false)
+    let textAlignmentControlV = AUtoStringSelectControl(frame: .zero, titNameStr: "Alignment", isEnable: false, configBtnType: .typeAlignment)
+    
     let borderColorControlV = AUtoColorSelectControl(frame: .zero, titNameStr: "Border Color", currentColorStr: "", isEnable: false)
     let borderWidthControlV = AUtoValueSelectControl(frame: .zero, titNameStr: "Border Width", currentValue: 1.0, isEnable: false)
     let borderCornerControlV = AUtoValueSelectControl(frame: .zero, titNameStr: "Corner Radius", currentValue: 1.0, isEnable: false)
@@ -46,9 +56,16 @@ class AUtoCustomViewVC: UIViewController {
         setupNameBgV()
         setupBackgroundColorV()
         setupAlphaV()
+        setupTextControlV()
+        setupImageControlV()
         setupBorderControlV()
         setupShadowControlV()
-        
+     
+        setupDefaultStatus()
+    }
+    
+    func setupDefaultStatus() {
+        nameControlV.currentContentStr = "label"
     }
     
 
@@ -104,7 +121,7 @@ class AUtoCustomViewVC: UIViewController {
     
 }
 
-extension AUtoCustomViewVC {
+extension AUtoCustomLabelVC {
     func setupNameBgV() {
         contentScrollV.addSubview(nameControlV)
         nameControlV.snp.makeConstraints {
@@ -113,6 +130,15 @@ extension AUtoCustomViewVC {
             $0.left.equalToSuperview().offset(10)
             $0.top.equalToSuperview().offset(20)
         }
+        
+        contentScrollV.addSubview(contentTextControlV)
+        contentTextControlV.snp.makeConstraints {
+            $0.width.equalTo(180)
+            $0.height.equalTo(90)
+            $0.left.equalTo(nameControlV.snp.right).offset(10)
+            $0.top.equalTo(nameControlV.snp.top).offset(0)
+        }
+        
     }
     
     //
@@ -138,6 +164,75 @@ extension AUtoCustomViewVC {
             $0.top.equalTo(bgColorControlV.snp.top).offset(0)
         }
     }
+    //
+    func setupTextControlV() {
+        contentScrollV.addSubview(labelTitleContentControlV)
+        labelTitleContentControlV.snp.makeConstraints {
+            $0.left.equalToSuperview().offset(10)
+            $0.top.equalTo(bgColorControlV.snp.bottom).offset(20)
+            $0.width.equalTo(120)
+            $0.height.equalTo(90)
+        }
+        //
+        contentScrollV.addSubview(labelTitleFontControlV)
+        labelTitleFontControlV.snp.makeConstraints {
+            $0.left.equalTo(labelTitleContentControlV.snp.right).offset(10)
+            $0.top.equalTo(labelTitleContentControlV.snp.top).offset(0)
+            $0.width.equalTo(120)
+            $0.height.equalTo(90)
+        }
+        labelTitleFontControlV.fontSelectBlock = {
+            [weak self] in
+            guard let `self` = self else {return}
+            DispatchQueue.main.async {
+                self.showFontSelectPopV()
+            }
+        }
+        //
+        contentScrollV.addSubview(labelTitleColorControlV)
+        labelTitleColorControlV.snp.makeConstraints {
+            $0.left.equalTo(labelTitleFontControlV.snp.right).offset(10)
+            $0.top.equalTo(labelTitleContentControlV.snp.top).offset(0)
+            $0.width.equalTo(120)
+            $0.height.equalTo(90)
+        }
+        
+    }
+    
+    
+    //
+    func setupImageControlV() {
+        //
+        contentScrollV.addSubview(textAlignmentControlV)
+        textAlignmentControlV.snp.makeConstraints {
+            $0.top.equalTo(labelTitleContentControlV.snp.bottom).offset(20)
+            $0.left.equalToSuperview().offset(10)
+            $0.width.equalTo(180)
+            $0.height.equalTo(90)
+        }
+        
+        //
+        contentScrollV.addSubview(numberLinesControlV)
+        numberLinesControlV.snp.makeConstraints {
+            $0.top.equalTo(textAlignmentControlV.snp.top).offset(0)
+            $0.left.equalTo(textAlignmentControlV.snp.right).offset(10)
+            $0.width.equalTo(180)
+            $0.height.equalTo(90)
+        }
+        //
+        contentScrollV.addSubview(adjustFitWidthControlV)
+        adjustFitWidthControlV.snp.makeConstraints {
+            $0.top.equalTo(textAlignmentControlV.snp.bottom).offset(20)
+            $0.left.equalToSuperview().offset(10)
+            $0.width.equalTo(180)
+            $0.height.equalTo(50)
+        }
+        
+      
+        
+        
+    }
+    
     
     //
     func setupBorderControlV() {
@@ -147,7 +242,7 @@ extension AUtoCustomViewVC {
             $0.width.equalTo(120)
             $0.height.equalTo(90)
             $0.left.equalToSuperview().offset(10)
-            $0.top.equalTo(bgColorControlV.snp.bottom).offset(20)
+            $0.top.equalTo(adjustFitWidthControlV.snp.bottom).offset(20)
         }
         //
         contentScrollV.addSubview(borderWidthControlV)
@@ -219,7 +314,7 @@ extension AUtoCustomViewVC {
     
 }
 
-extension AUtoCustomViewVC {
+extension AUtoCustomLabelVC {
     @objc func backBtnClick() {
         if self.navigationController != nil {
             self.navigationController?.popViewController()
@@ -236,6 +331,9 @@ extension AUtoCustomViewVC {
         
     }
     
+    func showFontSelectPopV() {
+        
+    }
    
 }
 

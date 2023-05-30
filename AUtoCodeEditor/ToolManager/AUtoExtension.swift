@@ -8,7 +8,9 @@
 import UIKit
 
 class AUtoExtension: NSObject {
-
+    static let leftStr: String = "left"
+    static let centerStr: String = "center"
+    static let rightStr: String = "right"
 }
 
 enum FontCusNames: String {
@@ -41,7 +43,18 @@ enum ColorTool: String {
     }
 }
 
-
+extension UIColor {
+    func toHexString() -> String {
+        if let components = self.cgColor.components {
+            let r = Float(components[0])
+            let g = Float(components[1])
+            let b = Float(components[2])
+            let hexString = String(format: "%02X%02X%02X", Int(r * 255), Int(g * 255), Int(b * 255))
+            return "#\(hexString)"
+        }
+        return ""
+    }
+}
 
 
 
