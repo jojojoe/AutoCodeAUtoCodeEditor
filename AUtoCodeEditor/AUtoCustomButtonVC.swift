@@ -18,14 +18,14 @@ class AUtoCustomButtonVC: UIViewController {
     let bgColorControlV = AUtoColorSelectControl(frame: .zero, titNameStr: "Bg Color", currentColorStr: "")
     let alphaControlV = AUtoValueSelectControl(frame: .zero, titNameStr: "Alpha", currentValue: 0.5, isEnable: false)
     
-    let btnTitleContentControlV = AUtoStringSelectControl(frame: .zero, titNameStr: "Title Content", configBtnType: .typeNone)
+    let btnTitleContentControlV = AUtoStringSelectControl(frame: .zero, titNameStr: "Title Content", configBtnType: .typeNon)
     let btnTitleFontControlV = AUtoStringSelectControl(frame: .zero, titNameStr: "Title Font", configBtnType: .typeFont)
     let btnTitleColorControlV = AUtoColorSelectControl(frame: .zero, titNameStr: "Title Color", currentColorStr: "#000000")
     
-    let btnImageNameControlV = AUtoStringSelectControl(frame: .zero, titNameStr: "Content Image", isEnable: false, configBtnType: .typeNone)
-    let btnImageNameSelectedControlV = AUtoStringSelectControl(frame: .zero, titNameStr: "Content Image Selected", isEnable: false, configBtnType: .typeNone)
-    let btnBgImageNameControlV = AUtoStringSelectControl(frame: .zero, titNameStr: "Bg Image", isEnable: false, configBtnType: .typeNone)
-    let btnBgImageNameSelectedControlV = AUtoStringSelectControl(frame: .zero, titNameStr: "Bg Image Selected", isEnable: false, configBtnType: .typeNone)
+    let btnImageNameControlV = AUtoStringSelectControl(frame: .zero, titNameStr: "Content Image", isEnable: false, configBtnType: .typeNon)
+    let btnImageNameSelectedControlV = AUtoStringSelectControl(frame: .zero, titNameStr: "Content Image Selected", isEnable: false, configBtnType: .typeNon)
+    let btnBgImageNameControlV = AUtoStringSelectControl(frame: .zero, titNameStr: "Bg Image", isEnable: false, configBtnType: .typeNon)
+    let btnBgImageNameSelectedControlV = AUtoStringSelectControl(frame: .zero, titNameStr: "Bg Image Selected", isEnable: false, configBtnType: .typeNon)
     
     
     

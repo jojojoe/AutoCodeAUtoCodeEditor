@@ -17,8 +17,11 @@ class AUtoCustomImageViewVC: UIViewController {
     //
     let nameControlV = AUtoStringSelectControl(frame: .zero, titNameStr: "ControlName")
     let imageNameControlV = AUtoStringSelectControl(frame: .zero, titNameStr: "Image Name")
-    let bgColorControlV = AUtoColorSelectControl(frame: .zero, titNameStr: "Bg Color", currentColorStr: "")
+    let bgColorControlV = AUtoColorSelectControl(frame: .zero, titNameStr: "Bg Color", currentColorStr: "", isEnable: false)
     let alphaControlV = AUtoValueSelectControl(frame: .zero, titNameStr: "Alpha", currentValue: 0.5, isEnable: false)
+    let contentModeControlV = AUtoStringSelectControl(frame: .zero, titNameStr: "ContentMode", configBtnType: .typeImageContentMode)
+    let clipsToBoundsControlV = AUtoEnableSwitchControl(frame: .zero, titNameStr: "ClipsToBounds", currentPropertyNameStr: "clipsToBounds", isEnable: false)
+    
     let borderColorControlV = AUtoColorSelectControl(frame: .zero, titNameStr: "Border Color", currentColorStr: "", isEnable: false)
     let borderWidthControlV = AUtoValueSelectControl(frame: .zero, titNameStr: "Border Width", currentValue: 1.0, isEnable: false)
     let borderCornerControlV = AUtoValueSelectControl(frame: .zero, titNameStr: "Corner Radius", currentValue: 1.0, isEnable: false)
@@ -48,6 +51,7 @@ class AUtoCustomImageViewVC: UIViewController {
         setupNameBgV()
         setupBackgroundColorV()
         setupAlphaV()
+        setupContentModeV()
         setupBorderControlV()
         setupShadowControlV()
         
@@ -143,10 +147,30 @@ extension AUtoCustomImageViewVC {
     func setupAlphaV() {
         contentScrollV.addSubview(alphaControlV)
         alphaControlV.snp.makeConstraints {
-            $0.width.equalTo(150)
+            $0.width.equalTo(160)
             $0.height.equalTo(90)
             $0.left.equalTo(bgColorControlV.snp.right).offset(10)
             $0.top.equalTo(bgColorControlV.snp.top).offset(0)
+        }
+    }
+    
+    //
+    func setupContentModeV() {
+        contentScrollV.addSubview(contentModeControlV)
+        contentModeControlV.snp.makeConstraints {
+            $0.width.equalTo(220)
+            $0.height.equalTo(90)
+            $0.left.equalToSuperview().offset(10)
+            $0.top.equalTo(bgColorControlV.snp.bottom).offset(20)
+        }
+    }
+    func setupClipsToBoundsV() {
+        contentScrollV.addSubview(clipsToBoundsControlV)
+        clipsToBoundsControlV.snp.makeConstraints {
+            $0.width.equalTo(220)
+            $0.height.equalTo(90)
+            $0.left.equalToSuperview().offset(10)
+            $0.top.equalTo(contentModeControlV.snp.bottom).offset(20)
         }
     }
     
@@ -158,7 +182,7 @@ extension AUtoCustomImageViewVC {
             $0.width.equalTo(120)
             $0.height.equalTo(90)
             $0.left.equalToSuperview().offset(10)
-            $0.top.equalTo(bgColorControlV.snp.bottom).offset(20)
+            $0.top.equalTo(clipsToBoundsControlV.snp.bottom).offset(20)
         }
         //
         contentScrollV.addSubview(borderWidthControlV)

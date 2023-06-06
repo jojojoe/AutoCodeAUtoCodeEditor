@@ -20,7 +20,11 @@ class AUtoValueSelectControl: UIView {
     var isEnableStatus = false
     
     var titNameStr: String
-    var currentValue: CGFloat = 0
+    var currentValue: CGFloat = 0 {
+        didSet {
+            textField.text = "\(currentValue)"
+        }
+    }
     
     init(frame: CGRect, titNameStr: String, currentValue: CGFloat, isEnable: Bool = true) {
         self.titNameStr = titNameStr
@@ -133,12 +137,12 @@ class AUtoValueSelectControl: UIView {
     
     @objc func upBtnClick() {
         currentValue = currentValue + 1.0
-        textField.text = "\(currentValue)"
+        
     }
     
     @objc func lowBtnClick() {
         currentValue = currentValue - 1.0
-        textField.text = "\(currentValue)"
+        
     }
     
     @objc func enableBtnClick() {

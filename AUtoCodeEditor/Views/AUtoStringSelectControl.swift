@@ -11,7 +11,8 @@ enum StringConfigBtnType: String {
     case typeRandom
     case typeFont
     case typeAlignment
-    case typeNone
+    case typeImageContentMode
+    case typeNon
 }
 
 class AUtoStringSelectControl: UIView {
@@ -125,7 +126,20 @@ class AUtoStringSelectControl: UIView {
             textField.isEnabled = false
             currentContentStr = AUtoExtension.leftStr
             
-        } else if configBtnType == .typeNone {
+        } else if configBtnType == .typeImageContentMode {
+            let contentModeBtn = UIButton()
+            contentModeBtn.backgroundColor = ColorTool.ColorD9D9D9.color()
+            bgV.addSubview(contentModeBtn)
+            contentModeBtn.snp.makeConstraints {
+                $0.centerY.equalTo(textField.snp.centerY)
+                $0.right.equalToSuperview().offset(-10)
+                $0.width.height.equalTo(30)
+            }
+            contentModeBtn.setTitle("M", for: .normal)
+            contentModeBtn.addTarget(self, action: #selector(contentModeBtnClick), for: .touchUpInside)
+            textField.isEnabled = false
+            currentContentStr = AUtoExtension.scaleAspectFit
+        } else if configBtnType == .typeNon {
             textField.snp.remakeConstraints {
                 $0.left.equalToSuperview().offset(10)
                 $0.top.equalTo(nameTitleLabel.snp.bottom).offset(10)
@@ -174,8 +188,6 @@ class AUtoStringSelectControl: UIView {
     
     @objc func alignmentBtnClick() {
         
-        
-        
         if currentContentStr == AUtoExtension.leftStr {
             currentContentStr = AUtoExtension.centerStr
         } else if currentContentStr == AUtoExtension.centerStr {
@@ -185,6 +197,19 @@ class AUtoStringSelectControl: UIView {
         }
         
         
+    }
+    
+    @objc func contentModeBtnClick() {
+        
+        if currentContentStr == AUtoExtension.scaleAspectFit {
+            currentContentStr = AUtoExtension.scaleAspectFill
+        } else if currentContentStr == AUtoExtension.scaleAspectFill {
+            currentContentStr = AUtoExtension.scaleToFill
+        }  else if currentContentStr == AUtoExtension.scaleToFill {
+            currentContentStr = AUtoExtension.center
+        } else {
+            currentContentStr = AUtoExtension.scaleAspectFit
+        }
     }
     
     @objc func textFieldChange(textfield: UITextField) {

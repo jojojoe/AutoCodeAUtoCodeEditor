@@ -15,11 +15,12 @@ class AUtoCustomLabelVC: UIViewController {
     
     //
     let nameControlV = AUtoStringSelectControl(frame: .zero, titNameStr: "ControlName")
-    let contentTextControlV = AUtoStringSelectControl(frame: .zero, titNameStr: "ContentText", configBtnType: .typeNone)
+    let contentTextControlV = AUtoStringSelectControl(frame: .zero, titNameStr: "ContentText", configBtnType: .typeNon)
     let bgColorControlV = AUtoColorSelectControl(frame: .zero, titNameStr: "Bg Color", currentColorStr: "", isEnable: false)
     let alphaControlV = AUtoValueSelectControl(frame: .zero, titNameStr: "Alpha", currentValue: 0.5, isEnable: false)
     
-    let labelTitleContentControlV = AUtoStringSelectControl(frame: .zero, titNameStr: "Title Content", configBtnType: .typeNone)
+    
+    let labelTitleContentControlV = AUtoStringSelectControl(frame: .zero, titNameStr: "Title Content", configBtnType: .typeNon)
     let labelTitleFontControlV = AUtoStringSelectControl(frame: .zero, titNameStr: "Title Font", configBtnType: .typeFont)
     let labelTitleColorControlV = AUtoColorSelectControl(frame: .zero, titNameStr: "Title Color", currentColorStr: "#000000")
     
@@ -56,6 +57,7 @@ class AUtoCustomLabelVC: UIViewController {
         setupNameBgV()
         setupBackgroundColorV()
         setupAlphaV()
+        
         setupTextControlV()
         setupImageControlV()
         setupBorderControlV()
@@ -158,12 +160,13 @@ extension AUtoCustomLabelVC {
     func setupAlphaV() {
         contentScrollV.addSubview(alphaControlV)
         alphaControlV.snp.makeConstraints {
-            $0.width.equalTo(150)
+            $0.width.equalTo(180)
             $0.height.equalTo(90)
             $0.left.equalTo(bgColorControlV.snp.right).offset(10)
             $0.top.equalTo(bgColorControlV.snp.top).offset(0)
         }
     }
+    
     //
     func setupTextControlV() {
         contentScrollV.addSubview(labelTitleContentControlV)

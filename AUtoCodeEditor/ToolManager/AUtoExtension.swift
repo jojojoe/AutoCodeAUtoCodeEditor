@@ -11,7 +11,15 @@ class AUtoExtension: NSObject {
     static let leftStr: String = "left"
     static let centerStr: String = "center"
     static let rightStr: String = "right"
+    
+    static let scaleAspectFill: String = "scaleAspectFill"
+    static let scaleAspectFit: String = "scaleAspectFit"
+    static let scaleToFill: String = "scaleToFill"
+    static let center: String = "center"
+    
 }
+
+ 
 
 enum FontCusNames: String {
     case SFProRegular = "SFProText-Regular"

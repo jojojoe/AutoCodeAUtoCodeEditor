@@ -10,7 +10,7 @@ import SnapKit
 import SwifterSwift
 
 class AUtoColorSelectControl: UIView {
-
+    
     let bgV = UIView()
     let nameTitleLabel = UILabel()
     let textField = UITextField()
@@ -21,7 +21,11 @@ class AUtoColorSelectControl: UIView {
     
     var titNameStr: String
     
-    var currentColorStr: String = ""
+    var currentColorStr: String = "" {
+        didSet {
+            textField.text = currentColorStr
+        }
+    }
     
     init(frame: CGRect, titNameStr: String, currentColorStr: String, isEnable: Bool = true) {
         self.titNameStr = titNameStr
@@ -123,10 +127,10 @@ class AUtoColorSelectControl: UIView {
     @objc func viewBackgroundColorValueChange(colorWell: UIColorWell) {
         if let hexStr = colorWell.selectedColor?.toHexString(), hexStr != "" {
             currentColorStr = hexStr
-            textField.text = hexStr
+            
         } else {
             currentColorStr = ""
-            textField.text = ""
+            
         }
     }
     
